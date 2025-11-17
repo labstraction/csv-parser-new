@@ -13,5 +13,10 @@
         "name": "banana",
         "color": "yellow",
         "shape": "banana"
+    },
+    {
+        "name": "pear",
+        "color": "green",
+        "shape": "pear"
     }
 ]
