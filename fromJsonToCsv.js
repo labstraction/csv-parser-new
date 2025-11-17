@@ -4,7 +4,7 @@ const fs = require('node:fs');
 //1) leggere il file da pc 
 let jsonString;
 try {
-    jsonString = fs.readFileSync('./input/students-data.json', 'utf8');
+    jsonString = fs.readFileSync('./input/fruit-data.json', 'utf8');
 } catch (err) {
     console.error(err);
 }
@@ -15,11 +15,11 @@ const array = JSON.parse(jsonString);
 //3) creo la stringa del CSV 
 let csvString = '';
 
-//4) prendo il primo oggetto dell'array;
-const first = array[0];
+//4) prendo il primo oggetto dell'array;     
+const first = array[0]; //{name: "apple",color: "red",shape: "round"}
 
 //5) prendo i nomi delle proprietà dell'array
-const keyArray = Object.keys(first);
+const keyArray = Object.keys(first); //["name", "color", "shape"]
 
 //6)ciclo i nomi delle proprietà
 for (let i = 0; i < keyArray.length; i++) {
@@ -35,13 +35,14 @@ for (let i = 0; i < keyArray.length; i++) {
 
 }
 
+//"name;color;shape\n"
+
 //9) ora ciclo tutto l'array
 for (let i = 0; i < array.length; i++) {
-    const element = array[i];
+    const element = array[i]; //{name: "apple",color: "red",shape: "round"}
 
     //10) prendo tutti i valori del mio oggetto 
-    const values = Object.values(element);
-    console.log(values)
+    const values = Object.values(element); //["apple", "red", "round"]
     //11) ciclo values e uso la stessa logica delle keys
 
     for (let j = 0; j < values.length; j++) {
@@ -56,11 +57,19 @@ for (let i = 0; i < array.length; i++) {
         }
 
     }
+    //"name;color;shape\n
+    // apple;red;round\n"
 
 }
 
+//"name;color;shape\n
+// apple;red;round\n
+// lemon;yellow;round\n
+// banana;yellow;banana\n
+// pear;green;pear\n"
+
 try {
-  fs.writeFileSync('./output/student-data.csv', csvString);
+  fs.writeFileSync('./output/fruit-data.csv', csvString);
 } catch (err) {
   console.error(err);
 }
